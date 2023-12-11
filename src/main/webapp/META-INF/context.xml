@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/DBMS">
+    <Resource name="jndi/jwxt"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="ll"
+              password="1"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://127.0.0.1:3306/jwxt?useSSL=false"
+              maxActive="10000"
+              maxIdle="30"
+    />
+</Context>
