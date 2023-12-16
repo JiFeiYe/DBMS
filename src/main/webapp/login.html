@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<h1>教务登录</h1>
+<div class="form-div">
+    <div class="reg-content">
+        <h2>欢迎登录</h2>
+        <span>没有账号？</span> <a href="register.html">注册</a>
+    </div>
+    <form id="form" action="/DBMS//LoginServlet" method="post">
+        <table>
+            <tr>
+                <td>用户名</td>
+                <td class="inputs">
+                    <input type="text" name="username" id="username">
+                    <br>
+                    <span id="username_err" class="err_msg"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td class="inputs">
+                    <input type="password" name="password" id="password">
+                    <br>
+                    <span id="password_err" class="err_msg"></span>
+                </td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <input value="登 录" type="submit" id="btn">
+        </div>
+        <br class="clear">
+    </form>
+</div>
+<script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        const username = $("#username");
+        const username_err = $("#username_err");
+        username_err.css("color", "red");
+
+        const password = $("#password");
+        const password_err = $("#password_err");
+        password_err.css("color", "red");
+
+        username.blur(function () {
+            nameCheck();
+        })
+
+        function nameCheck() {
+            const reg = /^\w{4,20}$/ // 长度为4-20的数字或符号
+            const regFlag = reg.test(username.val().trim());
+            if (username.val().trim() !== "") { // 不为空
+                if (regFlag) { // 匹配正则
+                    username_err.text("");
+                    return true;
+                } else {
+                    username_err.text("用户名长度不适合或使用了非法字符");
+                }
+            } else { // 未输入
+                username_err.text("请输入用户名");
+            }
+            return false;
+        }
+
+        password.blur(function () {
+            passCheck();
+        })
+
+        function passCheck() {
+            /*
+                1. 密码由至少8个字符组成。
+                2. 包含至少一个大写字母、一个小写字母和一个数字。
+             */
+            const reg1 = /^.{8,}$/;
+            const reg2 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+            const regFlag1 = reg1.test(password.val().trim());
+            const regFlag2 = reg2.test(password.val().trim());
+
+            if (password.val().trim() !== "") { // 不为空
+                if (!regFlag1) {
+                    password_err.text("密码应由至少8个字符组成");
+                } else if (!regFlag2) {
+                    password_err.text("密码应包含至少一个大写字母、一个小写字母和一个数字");
+                } else {
+                    password_err.text("");
+                    return true;
+                }
+            } else { // 输入为空
+                password_err.text("请输入密码");
+            }
+            return false;
+        }
+
+        $("#form").submit(function () {
+            return nameCheck() && passCheck();
+        })
+    }) // jquery
+</script>
+</body>
+</html>
