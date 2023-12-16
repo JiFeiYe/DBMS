@@ -11,14 +11,14 @@ import java.util.List;
 
 public class StudentDAO {
 
-    public List getAll() {
+    public List<Student> getAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         List<Student> lt = new ArrayList<Student>();
         try {
             conn = BaseDAO.getConnection();
-            String sql = "select * from student";
+            String sql = "select * from jwxt.student";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -28,9 +28,8 @@ public class StudentDAO {
                 int userAge = rs.getInt("userAge");
                 String markYear = rs.getString("markYear");
                 int classID = rs.getInt("classID");
-                int teachID = rs.getInt("teachID");
                 int majorID = rs.getInt("majorID");
-                Student st = new Student(userID, userName, userSex, userAge, markYear, classID, teachID, majorID);
+                Student st = new Student(userID, userName, userSex, userAge, markYear, classID, majorID);
                 lt.add(st);
             }
         } catch (Exception ex) {
