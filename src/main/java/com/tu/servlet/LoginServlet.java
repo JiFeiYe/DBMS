@@ -26,18 +26,24 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         HttpSession session = req.getSession();
 
-        if ("register".equals(oper)) {
-            String username = req.getParameter("username");
+        if ("register".equals(oper)) { // 注册验证(重名)
+            String username = req.getParameter("userid");
             LoginDAO ld = new LoginDAO();
             boolean isR = ld.isRegister(username);
             out.println(isR);
-        } else if ("login".equals(oper)) {
-            String username = req.getParameter("username");
+        } else if ("registerIn".equals(oper)) { // 数据记录
+            // todo
+        } else if ("login".equals(oper)) { // 登录验证
+            String userid = req.getParameter("userid");
             String password = req.getParameter("password");
             LoginDAO ld = new LoginDAO();
-            boolean isL = ld.isLogin(username, password);
-            if (isL) { // 验证成功
-                resp.sendRedirect("#");
+            int type = ld.isLogin(userid, password);
+            if (type == 1) { // 验证成功，1是学生
+                session.setAttribute("userid", userid);
+                resp.sendRedirect("/DBMS/InfoServlet?oper=student");
+            } else if (type == 2) { // 验证成功，2是老师
+                session.setAttribute("teachid", userid);
+                resp.sendRedirect("/DBMS/InfoServlet?oper=teacher");
             } else { // 登录验证失败
                 resp.sendRedirect("login.html");
             }

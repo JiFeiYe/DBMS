@@ -10,12 +10,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAO {
-
+    public List<Student> getAllById(int userId) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<Student> lts = new ArrayList<Student>();
+        try {
+            conn = BaseDAO.getConnection();
+            String sql = "select * from jwxt.student where userID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, userId);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int userID = rs.getInt("userID");
+                String userName = rs.getString("userName");
+                int userSex = rs.getInt("userSex");
+                int userAge = rs.getInt("userAge");
+                String markYear = rs.getString("markYear");
+                int classID = rs.getInt("classID");
+                int majorID = rs.getInt("majorID");
+                Student st = new Student(userID, userName, userSex, userAge, markYear, classID, majorID);
+                lts.add(st);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            BaseDAO.closeAll(rs, pstmt, conn);
+        }
+        return lts;
+    }
     public List<Student> getAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        List<Student> lt = new ArrayList<Student>();
+        List<Student> lts = new ArrayList<Student>();
         try {
             conn = BaseDAO.getConnection();
             String sql = "select * from jwxt.student";
@@ -30,11 +58,13 @@ public class StudentDAO {
                 int classID = rs.getInt("classID");
                 int majorID = rs.getInt("majorID");
                 Student st = new Student(userID, userName, userSex, userAge, markYear, classID, majorID);
-                lt.add(st);
+                lts.add(st);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            BaseDAO.closeAll(rs, pstmt, conn);
         }
-        return lt;
+        return lts;
     }
 }

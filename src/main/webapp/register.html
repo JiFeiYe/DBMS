@@ -11,12 +11,12 @@
         <h2>欢迎注册</h2>
         <span>已有账号？</span> <a href=login.html>登录</a>
     </div>
-    <form id="form" action="#" method="post">
+    <form id="form" action="/DBMS/LoginServlet?oper=registerIn" method="post">
         <table>
             <tr>
                 <td>用户名</td>
                 <td class="inputs">
-                    <input type="text" name="username" id="username">
+                    <input type="text" name="userid" id="userid">
                     <br>
                     <span id="username_err" class="err_msg"></span>
                 </td>
@@ -46,7 +46,7 @@
 <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(function () { // post方式，不采用json
-        const username = $("#username");
+        const userid = $("#userid");
         const username_err = $("#username_err");
         username_err.css("color", "red");
 
@@ -59,13 +59,13 @@
         tel_err.css("color", "red");
 
         let request;
-        username.blur(() => {
+        userid.blur(() => {
             request = new XMLHttpRequest();
             let url = "/DBMS/LoginServlet?oper=register";
             // 设置回调函数fn
             request.onreadystatechange = nameCheck;
             request.open("POST", url, true);
-            let data = "username=" + username.val().trim();
+            let data = "userid=" + userid.val().trim();
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send(data);
         })
@@ -74,8 +74,8 @@
             if (request.status === 200 && request.readyState === 4) {
                 let isR = request.responseText;
                 const reg = /^\w{4,20}$/ // 长度为4-20的数字或符号
-                const regFlag = reg.test(username.val().trim());
-                if (username.val().trim() !== "") { // 不为空
+                const regFlag = reg.test(userid.val().trim());
+                if (userid.val().trim() !== "") { // 不为空
                     if ("false" === isR.trim()) { // 未从数据库查到名字
                         if (regFlag) { // 匹配正则
                             username_err.text("");

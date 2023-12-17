@@ -3,43 +3,54 @@ package com.tu.pojo;
 
 public class Login {
 
-    private Integer id;
-    private String username;
-    private String password;
+  private Integer id;
+  private String userid;
+  private String password;
+  private Integer type;
 
-    public Login() {
-    }
+  public Login() {
+  }
 
-    public Login(Integer id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
+  public Login(Integer id, String userid, String password, Integer type) {
+    this.id = id;
+    this.userid = userid;
+    this.password = password;
+    this.type = type;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
 
-    public String getPassword() {
-        return password;
-    }
+  public String getUserid() {
+    return userid;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setUserid(String userid) {
+    this.userid = userid;
+  }
+
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+
+  public Integer getType() {
+    return type;
+  }
+
+  public void setType(Integer type) {
+    this.type = type;
+  }
 
 }

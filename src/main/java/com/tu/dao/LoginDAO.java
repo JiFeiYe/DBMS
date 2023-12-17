@@ -20,7 +20,7 @@ public class LoginDAO {
         boolean isR = false;
         try {
             conn = BaseDAO.getConnection();
-            String sql = "select count(1) from jwxt.login where username = ?";
+            String sql = "select count(1) from jwxt.login where userid = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             rs = pstmt.executeQuery();
@@ -43,14 +43,14 @@ public class LoginDAO {
      * @param password
      * @return
      */
-    public boolean isLogin(String username, String password) {
+    public int isLogin(String username, String password) {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        boolean isL = false;
+        int type = 0;
         try {
             conn = BaseDAO.getConnection();
-            String sql = "select count(1) from jwxt.login where username = ? and password = ?";
+            String sql = "select count(1), type from jwxt.login where userid = ? and password = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -58,12 +58,14 @@ public class LoginDAO {
             rs.next();
             int count = rs.getInt(1);
             if (count > 0)
-                isL = true;
+                type = rs.getInt("type");
+            else
+                return count;
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             BaseDAO.closeAll(rs, pstmt, conn);
         }
-        return isL;
+        return type;
     }
 }
