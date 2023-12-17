@@ -1,7 +1,9 @@
 package com.tu.pojo;
 
 
-public class Class {
+import java.io.Serializable;
+
+public class Class implements Serializable {
 
     private Integer classId;
     private Integer majorId;

@@ -37,7 +37,7 @@
             <td>${teach.teachYear}</td>
             <td>${teach.roomId}</td>
             <td>${teach.classId}</td>
-            <td><a href="#">修改</a></td>
+            <td><a href="teacherdetail.jsp">修改</a></td>
         </tr>
     </c:forEach>
 </table>

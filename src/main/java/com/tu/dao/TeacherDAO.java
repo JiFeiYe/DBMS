@@ -10,6 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherDAO {
+    public boolean updateTeacher(Teacher t) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        boolean isU = false;
+        try {
+            conn = BaseDAO.getConnection();
+            String sql = "update jwxt.teacher set teachName = ?, teachSex = ?, teachAge = ?, degree = ?, title = ?, roomID = ?, classID = ? where teachID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(8, t.getTeachId());
+            pstmt.setString(1, t.getTeachName());
+            pstmt.setInt(2, t.getTeachSex());
+            pstmt.setInt(3, t.getTeachAge());
+            pstmt.setString(4, t.getDegree());
+            pstmt.setString(5, t.getTitle());
+            pstmt.setInt(6, t.getRoomId());
+            pstmt.setInt(7, t.getClassId());
+            int count = pstmt.executeUpdate();
+            if (count > 0)
+                isU = true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            BaseDAO.closeAll(null, pstmt, conn);
+        }
+        return isU;
+    }
     public List<Teacher> getAllById(int teachId) {
         Connection conn = null;
         PreparedStatement pstmt = null;

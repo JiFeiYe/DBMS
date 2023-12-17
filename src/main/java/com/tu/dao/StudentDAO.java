@@ -10,6 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAO {
+    public boolean updateStudent(Student s) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        boolean isU = false;
+        try {
+            conn = BaseDAO.getConnection();
+            String sql = "update jwxt.student set userName = ?, userSex = ?, userAge = ?, classID = ?, majorID = ? where userID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(6, s.getUserId());
+            pstmt.setString(1, s.getUserName());
+            pstmt.setInt(2, s.getUserSex());
+            pstmt.setInt(3, s.getUserAge());
+            pstmt.setInt(4, s.getClassId());
+            pstmt.setInt(5, s.getMajorId());
+            int count = pstmt.executeUpdate();
+            if (count > 0)
+                isU = true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            BaseDAO.closeAll(null, pstmt, conn);
+        }
+        return isU;
+    }
+
     public List<Student> getAllById(int userId) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -39,6 +64,7 @@ public class StudentDAO {
         }
         return lts;
     }
+
     public List<Student> getAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;

@@ -26,10 +26,10 @@ public class BaseDAO {
             if (rs != null) {
                 rs.close();
             }
-            if (pstmt != null){
+            if (pstmt != null) {
                 pstmt.close();
             }
-            if (conn != null && !conn.isClosed()){
+            if (conn != null && !conn.isClosed()) {
                 conn.close();
             }
         } catch (Exception ex) {

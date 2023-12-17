@@ -11,34 +11,34 @@
         <h2>欢迎注册</h2>
         <span>已有账号？</span> <a href=login.html>登录</a>
     </div>
-    <form id="form" action="/DBMS/LoginServlet?oper=registerIn" method="post">
+    <form action="/DBMS/LoginServlet?oper=registerIn" id="form" method="post">
         <table>
             <tr>
                 <td>用户名</td>
                 <td class="inputs">
-                    <input type="text" name="userid" id="userid">
+                    <input id="userid" name="userid" type="text">
                     <br>
-                    <span id="username_err" class="err_msg"></span>
+                    <span class="err_msg" id="username_err"></span>
                 </td>
             </tr>
             <tr>
                 <td>密码</td>
                 <td class="inputs">
-                    <input type="password" name="password" id="password">
+                    <input id="password" name="password" type="password">
                     <br>
-                    <span id="password_err" class="err_msg"></span>
+                    <span class="err_msg" id="password_err"></span>
                 </td>
             </tr>
             <tr>
                 <td>手机号</td>
-                <td class="inputs"><input type="text" name="tel" id="tel">
+                <td class="inputs"><input id="tel" name="tel" type="text">
                     <br>
-                    <span id="tel_err" class="err_msg"></span>
+                    <span class="err_msg" id="tel_err"></span>
                 </td>
             </tr>
         </table>
         <div class="buttons">
-            <input type="submit" value="注 册" id="btn">
+            <input id="btn" type="submit" value="注 册">
         </div>
         <br class="clear">
     </form>

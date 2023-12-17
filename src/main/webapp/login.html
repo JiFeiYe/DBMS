@@ -11,27 +11,27 @@
         <h2>欢迎登录</h2>
         <span>没有账号？</span> <a href="register.html">注册</a>
     </div>
-    <form id="form" action="/DBMS/LoginServlet?oper=login" method="post">
+    <form action="/DBMS/LoginServlet?oper=login" id="form" method="post">
         <table>
             <tr>
                 <td>用户名</td>
                 <td class="inputs">
-                    <input type="text" name="userid" id="userid">
+                    <input id="userid" name="userid" type="text">
                     <br>
-                    <span id="username_err" class="err_msg"></span>
+                    <span class="err_msg" id="username_err"></span>
                 </td>
             </tr>
             <tr>
                 <td>密码</td>
                 <td class="inputs">
-                    <input type="password" name="password" id="password">
+                    <input id="password" name="password" type="password">
                     <br>
-                    <span id="password_err" class="err_msg"></span>
+                    <span class="err_msg" id="password_err"></span>
                 </td>
             </tr>
         </table>
         <div class="buttons">
-            <input value="登 录" type="submit" id="btn">
+            <input id="btn" type="submit" value="登 录">
         </div>
         <br class="clear">
     </form>

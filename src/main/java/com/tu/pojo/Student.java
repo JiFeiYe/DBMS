@@ -1,7 +1,9 @@
 package com.tu.pojo;
 
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
 
     private Integer userId;
     private String userName;

@@ -1,7 +1,9 @@
 package com.tu.pojo;
 
 
-public class Major {
+import java.io.Serializable;
+
+public class Major implements Serializable {
 
     private Integer majorId;
     private String majorName;

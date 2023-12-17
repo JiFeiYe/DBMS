@@ -33,7 +33,7 @@
             <td>${stu.markYear}</td>
             <td>${stu.classId}</td>
             <td>${stu.majorId}</td>
-            <td><a href="#">修改</a></td>
+            <td><a href="studentdetail.jsp">修改</a></td>
         </tr>
     </c:forEach>
 </table>

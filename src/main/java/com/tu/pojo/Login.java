@@ -1,56 +1,58 @@
 package com.tu.pojo;
 
 
-public class Login {
+import java.io.Serializable;
 
-  private Integer id;
-  private String userid;
-  private String password;
-  private Integer type;
+public class Login implements Serializable {
 
-  public Login() {
-  }
+    private Integer id;
+    private String userid;
+    private String password;
+    private Integer type;
 
-  public Login(Integer id, String userid, String password, Integer type) {
-    this.id = id;
-    this.userid = userid;
-    this.password = password;
-    this.type = type;
-  }
+    public Login() {
+    }
 
-  public Integer getId() {
-    return id;
-  }
+    public Login(Integer id, String userid, String password, Integer type) {
+        this.id = id;
+        this.userid = userid;
+        this.password = password;
+        this.type = type;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-
-  public String getUserid() {
-    return userid;
-  }
-
-  public void setUserid(String userid) {
-    this.userid = userid;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 
-  public String getPassword() {
-    return password;
-  }
+    public String getUserid() {
+        return userid;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 
 
-  public Integer getType() {
-    return type;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setType(Integer type) {
-    this.type = type;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
 }

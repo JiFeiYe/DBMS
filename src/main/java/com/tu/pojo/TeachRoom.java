@@ -1,7 +1,9 @@
 package com.tu.pojo;
 
 
-public class TeachRoom {
+import java.io.Serializable;
+
+public class TeachRoom implements Serializable {
 
     private Integer roomId;
     private String roomName;

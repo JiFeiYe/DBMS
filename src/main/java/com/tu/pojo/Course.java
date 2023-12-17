@@ -1,9 +1,10 @@
 package com.tu.pojo;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Course {
+public class Course implements Serializable {
 
     private Integer courseId;
     private String courseName;
