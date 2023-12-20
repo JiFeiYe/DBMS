@@ -2,20 +2,19 @@ package com.tu.pojo;
 
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Course implements Serializable {
 
     private Integer courseId;
     private String courseName;
-    private java.sql.Date hours;
+    private Integer hours;
     private double credit;
     private Integer teachId;
 
     public Course() {
     }
 
-    public Course(Integer courseId, String courseName, Date hours, double credit, Integer teachId) {
+    public Course(Integer courseId, String courseName, Integer hours, double credit, Integer teachId) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.hours = hours;
@@ -41,11 +40,11 @@ public class Course implements Serializable {
     }
 
 
-    public java.sql.Date getHours() {
+    public Integer getHours() {
         return hours;
     }
 
-    public void setHours(java.sql.Date hours) {
+    public void setHours(Integer hours) {
         this.hours = hours;
     }
 

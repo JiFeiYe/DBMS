@@ -35,18 +35,18 @@ public class StudentDAO {
         return isU;
     }
 
-    public List<Student> getAllById(int userId) {
+    public Student getAllById(int userId) {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        List<Student> lts = new ArrayList<Student>();
+        Student s = null;
         try {
             conn = BaseDAO.getConnection();
             String sql = "select * from jwxt.student where userID = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, userId);
             rs = pstmt.executeQuery();
-            while (rs.next()) {
+            rs.next();
                 int userID = rs.getInt("userID");
                 String userName = rs.getString("userName");
                 int userSex = rs.getInt("userSex");
@@ -54,15 +54,13 @@ public class StudentDAO {
                 String markYear = rs.getString("markYear");
                 int classID = rs.getInt("classID");
                 int majorID = rs.getInt("majorID");
-                Student st = new Student(userID, userName, userSex, userAge, markYear, classID, majorID);
-                lts.add(st);
-            }
+            s = new Student(userID, userName, userSex, userAge, markYear, classID, majorID);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             BaseDAO.closeAll(rs, pstmt, conn);
         }
-        return lts;
+        return s;
     }
 
     public List<Student> getAll() {

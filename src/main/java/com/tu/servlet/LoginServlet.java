@@ -40,12 +40,19 @@ public class LoginServlet extends HttpServlet {
             int type = ld.isLogin(userid, password);
             if (type == 1) { // 验证成功，1是学生
                 session.setAttribute("userid", userid);
+                session.setAttribute("type", 1);
                 resp.sendRedirect("/DBMS/InfoServlet?oper=student");
             } else if (type == 2) { // 验证成功，2是老师
                 session.setAttribute("teachid", userid);
+                session.setAttribute("type", 2);
                 resp.sendRedirect("/DBMS/InfoServlet?oper=teacher");
+            } else if (type == 3) { // 验证成功，3是管理员
+                session.setAttribute("type", 3);
+                session.setAttribute("rootid", userid);
+                resp.sendRedirect("/DBMS/InfoServlet?oper=root");
             } else { // 登录验证失败
-                resp.sendRedirect("login.html");
+                out.print("<script>alert('login failed');</script>");
+                out.print("<script>location.href='login.html';</script>");
             }
         }
     }

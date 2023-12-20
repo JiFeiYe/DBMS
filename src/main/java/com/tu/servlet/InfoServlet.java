@@ -30,19 +30,42 @@ public class InfoServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         HttpSession session = req.getSession();
 
-        if ("student".equals(oper)) { // session返回学生信息
+        if ("root".equals(oper)) { // 管理员查看所有信息，允许增删改查
+            StudentDAO sd = new StudentDAO();
+            TeacherDAO td = new TeacherDAO();
+            List<Student> stults = sd.getAll();
+            List<Teacher> tealts = td.getAll();
+            session.setAttribute("stults", stults);
+            session.setAttribute("tealts", tealts);
+            resp.sendRedirect("allmessage.jsp");
+        } else if ("detail".equals(oper)) { // 管理员查看详情，session需覆盖下两个elseif
+            String man = req.getParameter("man");
+            if ("stu".equals(man)) {
+                String userid = req.getParameter("userId");
+                StudentDAO sd = new StudentDAO();
+                Student s = sd.getAllById(Integer.parseInt(userid));
+                session.setAttribute("stu", s);
+                resp.sendRedirect("studentdetail.jsp");
+            } else if ("teach".equals(man)) {
+                String teachid = req.getParameter("teachId");
+                TeacherDAO td = new TeacherDAO();
+                Teacher t = td.getAllById(Integer.parseInt(teachid));
+                session.setAttribute("teach", t);
+                resp.sendRedirect("teacherdetail.jsp");
+            }
+        } else if ("student".equals(oper)) { // session返回学生信息
             String temp = session.getAttribute("userid").toString();
             int userid = Integer.parseInt(temp);
             StudentDAO sd = new StudentDAO();
-            List<Student> lts = sd.getAllById(userid);
-            session.setAttribute("lts", lts);
+            Student s = sd.getAllById(userid);
+            session.setAttribute("stu", s);
             resp.sendRedirect("student.jsp");
         } else if ("teacher".equals(oper)) { // session返回老师信息
             String temp = session.getAttribute("teachid").toString();
             int teachid = Integer.parseInt(temp);
             TeacherDAO td = new TeacherDAO();
-            List<Teacher> lts = td.getAllById(teachid);
-            session.setAttribute("lts", lts);
+            Teacher t = td.getAllById(teachid);
+            session.setAttribute("teach", t);
             resp.sendRedirect("teacher.jsp");
         } else if ("studentupdate".equals(oper)) { // 学生信息更新
             int userId = Integer.parseInt(req.getParameter("userId"));
@@ -57,8 +80,8 @@ public class InfoServlet extends HttpServlet {
             StudentDAO sd = new StudentDAO();
             boolean isU = sd.updateStudent(s);
             if (isU) { // 更新成功
-                List<Student> lts = sd.getAllById(userId);
-                session.setAttribute("lts", lts);
+                Student stu = sd.getAllById(userId);
+                session.setAttribute("stu", stu);
                 out.print("<script>alert('update success');</script>");
                 out.print("<script>location.href='student.jsp';</script>");
             }
@@ -77,8 +100,8 @@ public class InfoServlet extends HttpServlet {
             TeacherDAO td = new TeacherDAO();
             boolean isU = td.updateTeacher(t);
             if (isU) { // 更新成功
-                List<Teacher> lts = td.getAllById(teachId);
-                session.setAttribute("lts", lts);
+                Teacher tea = td.getAllById(teachId);
+                session.setAttribute("teach", tea);
                 out.print("<script>alert('update success');</script>");
                 out.print("<script>location.href='teacher.jsp';</script>");
             }
