@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-<h1>教务登录</h1>
+<div class="stars"></div>
+<div class="hd">教务系统</div>
 <div class="form-div">
     <div class="reg-content">
-        <h2>欢迎登录</h2>
-        <span>没有账号？</span> <a href="register.html">注册</a>
+        <div class="welc">欢迎登录</div>
+        <span class="login">没有账号？</span> <a href="register.html">注册</a>
     </div>
     <form action="/DBMS/LoginServlet?oper=login" id="form" method="post">
-        <table>
-            <tr>
-                <td>用户名</td>
+        <table class="table">
+            <tr class="ta1">
+                <td class="nm">用户名:</td>
                 <td class="inputs">
                     <input id="userid" name="userid" type="text">
                     <br>
                     <span class="err_msg" id="username_err"></span>
                 </td>
             </tr>
-            <tr>
-                <td>密码</td>
+            <tr class="ta2">
+                <td class="pwd">密码:</td>
                 <td class="inputs">
                     <input id="password" name="password" type="password">
                     <br>

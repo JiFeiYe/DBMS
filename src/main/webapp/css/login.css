@@ -1,0 +1,129 @@
+body {
+    background: url("../images/img4.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation-name: bg;
+    animation-duration: 20s;
+    /*变换时间*/
+    animation-delay: 2s;
+    /*动画开始时间*/
+    animation-iteration-count: infinite;
+    /*下一周期循环播放*/
+    animation-play-state: running;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6em;
+}
+
+@keyframes bg {
+    0% {
+        background: url("../images/img4.jpg");
+    }
+
+    34% {
+        background: url("../images/img1.jpg");
+    }
+
+    67% {
+        background: url("../images/img2.jpg");
+    }
+
+    100% {
+        background: url("../images/img3.jpg");
+    }
+}
+
+.hd {
+    padding-top: 60px;
+    text-align: center;
+    font-size: 3rem;
+    color: #2a3ed7;
+    /* Color of choice */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Adding a subtle shadow */
+    /* You can also consider adding a transition for smooth effects */
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.hd:hover {
+    color: #e91e63;
+    /* Change color on hover */
+    text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.5);
+    /* Adjust shadow on hover */
+}
+
+.form-div {
+    width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #ccc;
+}
+
+.welc,
+.login {
+    font-size: 25px;
+    line-height: 2;
+    text-align: center;
+    font-weight: 600;
+}
+
+a {
+    color: #0000EE;
+}
+
+a:hover {
+    color: #551A8B;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.nm,
+.pwd {
+    font-size: 1.1em;
+    color: #333;
+    padding: 10px;
+}
+
+.inputs input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.err_msg {
+    color: #FF0000;
+    font-size: 0.9em;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.buttons input[type="submit"] {
+    background: #1abc9c;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 25px;
+    border-radius: 20px;
+}
+
+.buttons input[type="submit"]:hover {
+    background: #13a085;
+}
+
+.clear {
+    clear: both;
+}
